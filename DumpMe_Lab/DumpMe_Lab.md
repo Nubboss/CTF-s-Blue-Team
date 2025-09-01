@@ -10,8 +10,8 @@
 
 
 ## Artifacts
-- Provided files: dumpme.zip → dumpme.mem (пример)  
-- Screenshots: /screenshots/01-get-filehash.png  
+- Provided files: Triage-Memory.mem 
+- Screenshots: /screenshots  
 
 ## Tools & Environment
 - OS: Windows 10 VM  
