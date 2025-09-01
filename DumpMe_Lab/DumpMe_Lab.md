@@ -15,7 +15,7 @@
 
 ## Tools & Environment
 - OS: Windows 10 VM  
-- Tools: Volatility 1 , sha1sum
+- Tools: Volatility 2,3 , sha1sum
 
 ---
 
