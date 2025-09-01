@@ -24,7 +24,7 @@ My first step in every Volatility task was to run windows.malfind and I found so
 
 How:
 ```powershell
-.\volatility_2.6_win64_standalone.exe -f  .\Triage-Memory.mem windows.malfind
+.\volatility_2.6_win64_standalone.exe -f  .\Triage-Memory.mem malfind
 ```
 ## We have some interesting process "UWkpjFjDzM"
 
