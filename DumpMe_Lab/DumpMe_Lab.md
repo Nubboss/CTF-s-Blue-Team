@@ -34,7 +34,7 @@ How:
 ```powershell
 Get-FileHash -Algorithm SHA1 .\Triage-Memory.mem
 ```
-![](DumpMe_Lab/screenshoots/GetHashDump.png)
+![Screen 1](DumpMe_Lab/screenshoots/GetHashDump.png)
 ## A1 - C95E8CC8C946F95A109EA8E47A6800DE10A27ABD
 
 ## Q2 — What volatility profile is the most appropriate for this machine?(ex:Win10x86_14393)
