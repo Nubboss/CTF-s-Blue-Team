@@ -12,7 +12,7 @@
 ## Artifacts
 - Provided files: Triage-Memory.mem 
 - Screenshots: /screenshots  
-
+- For a safe experience, consider opening this content in a secure, isolated environment.
 ## Tools & Environment
 - OS: Windows 10 VM  
 - Tools: Volatility 2,3 , sha1sum
@@ -34,7 +34,7 @@ How:
 ```powershell
 Get-FileHash -Algorithm SHA1 .\Triage-Memory.mem
 ```
-![Screen 1](./screenshoots/GetHashDump.png)
+![Screen 1](./screenshoots/GetHash.png)
 ## A1 - C95E8CC8C946F95A109EA8E47A6800DE10A27ABD
 
 ## Q2 — What volatility profile is the most appropriate for this machine?(ex:Win10x86_14393)
@@ -44,7 +44,7 @@ How:
 .\volatility_2.6_win64_standalone.exe -f  .\Triage-Memory.mem imageinfo
 #In output we have Suggested Profile(s) : Win7SP1x64, Win7SP0x64, Win2008R2SP0x64, Win2008R2SP1x64_23418, Win2008R2SP1x64, Win7SP1x64_23418
 ```
-
+![Screen 2](./screenshoots/GetImgInfo.png)
 ## A2 - Win7SP1x64
 
 ## Q3 — What was the process ID of notepad.exe?
@@ -52,7 +52,7 @@ How:
 ```powershell
 .\volatility_2.6_win64_standalone.exe -f .\Triage-Memory.mem --profile=Win7SP1x64 pslist | Select-String "notepad"
 ```
-
+![Screen 3](./screenshoots/GetPidNotepad.png)
 ## A3 - 3032
 
 ## Q4 — Name the child process of wscript.exe.
@@ -78,6 +78,7 @@ How:
 ```
 In "Local address" we can saw our local ip
 
+![Screen 5](./screenshoots/GetLocalIP.png)
 ## A5 - 10.0.0.101
 
 ## Q6 — Based on the answer regarding the infected PID, can you determine the IP of the attacker?
@@ -87,7 +88,7 @@ How:
 ```powershell
  .\volatility_2.6_win64_standalone.exe -f .\Triage-Memory.mem --profile=Win7SP1x64 netscan | Select-String "3496"
 ```
-
+![Screen 6](./screenshoots/GetAttackerIp.png)
 ## A6 - 10.0.0.106
 
 ## Q7 — How many processes are associated with VCRUNTIME140.dll?
@@ -104,17 +105,18 @@ How:
     python3 vol.py -f Triage-Memory.mem windows.dlllist | grep VCRUNTIME140
 ```
 And i had correct output
- 
+![Screen 7](./screenshoots/GetDlls.png) 
 ## A7 - 5
 
 ## Q8 — After dumping the infected process, what is its md5 hash?
-
+!!! For a safe experience, consider opening this content in a secure, isolated environment.
 How:
 ```powershell
  ..\volatility_2.6_win64_standalone -f .\Triage-Memory.mem --profile=Win7SP1x64 procdump -p 3496 --dump-dir=dump
  Get-FileHash -Algorithm MD5 .\executable.3496.exe
 
 ```
+![Screen 8](./screenshoots/GetMdHash.png) 
  
 ## A8 - 690ea20bc3bdfb328e23005d9a80c290
 
@@ -124,7 +126,7 @@ How:
 ```powershell
  .\volatility_2.6_win64_standalone -f .\Triage-Memory.mem --profile=Win7SP1x64 hashdump
 ```
- 
+![Screen 9](./screenshoots/GetHashDump.png)  
 ## A9 - aad3b435b51404eeaad3b435b51404ee
 
 ## Q10 — What memory protection constants does the VAD node at 0xfffffa800577ba10 have?
@@ -142,6 +144,7 @@ How:
     - what the region is used for (private data, a file mapping, or program code),
     - and what protections apply (read, write, execute).
  
+![Screen 10](./screenshoots/GetVad1.png)  
 
 ## A10 - PAGE_READONLY
 
@@ -149,7 +152,9 @@ How:
 
 How:
     In txt file i used find and found neded section
- 
+
+ ![Screen 11](./screenshoots/GetVad2.png)  
+
 ## A11 - aad3b435b51404eeaad3b435b51404ee
 
 ## Q12 — There was a VBS script that ran on the machine. What is the name of the script? (submit without file extension)
@@ -158,6 +163,7 @@ How:
 ```powershell
    .\volatility_2.6_win64_standalone -f .\Triage-Memory.mem --profile=Win7SP1x64 cmdline | Select-String "wscript"
 ```
+ ![Screen 12](./screenshoots/GetVBScript.png)  
 
 ## A12 - vhjReUDEuumrX
 
@@ -167,7 +173,7 @@ How:
 ```powershell
     .\volatility_2.6_win64_standalone -f .\Triage-Memory.mem --profile=Win7SP1x64 shimcache |Select-String"2019-03-07 23:06:58"
 ```
-
+![Screen 13](./screenshoots/GetShimCache.png)  
 ## A13 - Skype.exe
 
 ## Q14 — What was written in notepad.exe at the time when the memory dump was captured?
