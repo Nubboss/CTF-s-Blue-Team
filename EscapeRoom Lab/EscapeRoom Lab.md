@@ -1,4 +1,4 @@
-# DumpMe Lab — CTF writeup
+# EscapeRoom Lab— CTF writeup
 
 - Platform: [Cyberdefenders.org](https://cyberdefenders.org/)
 - Category: Network Forensics 
